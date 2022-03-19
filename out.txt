@@ -1,0 +1,10 @@
+Filled container. 
+Container contents 3 elements.
+1: Name: bush
+It is a bush. It's flowering month is July.
+2: Name: derevo
+It is a tree. It's age is 10 days.
+3: Name: kusttt
+It is a bush. It's flowering month is December.
+Empty container. 
+Container contents 0 elements.
