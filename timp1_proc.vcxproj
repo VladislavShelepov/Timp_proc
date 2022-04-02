@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="Flower.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="timp1_proc.cpp" />
     <ClCompile Include="Tree.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Bush.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="Flower.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
