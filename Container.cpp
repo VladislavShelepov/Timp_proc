@@ -52,12 +52,14 @@ void OutCont(ofstream& ofst, Container* c) {
 			tree_plant* pl;
 			pl = (tree_plant*)(c->Current->plnt->obj);
 			OutTree(ofst, *pl);
+			CountLettersTree(ofst, *pl);
 		}
 		else
 		{
 			bush_plant* pn;
 			pn = (bush_plant*)(c->Current->plnt->obj);
 			OutBush(ofst, *pn);
+			CountLettersBush(ofst, *pn);
 		}
 		c->Current = c->Current->next;
 		i++;

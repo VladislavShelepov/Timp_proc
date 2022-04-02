@@ -88,3 +88,13 @@ void OutBush(ofstream& ofst, bush_plant& a) {
 		break;
 	}
 }
+int CountLettersBush(ofstream& ofst, bush_plant& a) {
+	int cnt = 0;
+	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+	for (int i = 0; i < a.name.length(); i++)
+	{
+		if (letters.find(a.name[i]) < letters.length())cnt++;
+	}
+	ofst << "count of consonants: " << cnt << endl;
+	return cnt;
+}

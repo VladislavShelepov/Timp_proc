@@ -31,3 +31,21 @@ plant* InPlant(ifstream& ifst) {
 	}
 	return pt;
 }
+
+//int countLetters(plant& pt)
+//{
+//	int count = 0;
+//	switch (pt.key) {
+//	case 1:
+//		count = countLettersB(pt);
+//		break;
+//	case 2:
+//		pt->key = bush;
+//		a = new bush_plant;
+//		InBush(ifst, *a);
+//		pt->obj = (void*)a;
+//		break;
+//	default:
+//		return 0;
+//	}
+//}

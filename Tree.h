@@ -9,3 +9,4 @@ struct tree_plant {
 };
 void InTree(ifstream& ifst, tree_plant& f);
 void OutTree(ofstream& ofst, tree_plant& f);
+int CountLettersTree(ofstream& ofst, tree_plant& f);

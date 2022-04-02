@@ -2,9 +2,12 @@ Filled container.
 Container contents 3 elements.
 1: Name: bush
 It is a bush. It's flowering month is July.
+count of consonants: 3
 2: Name: derevo
 It is a tree. It's age is 10 days.
+count of consonants: 3
 3: Name: kusttt
 It is a bush. It's flowering month is December.
+count of consonants: 5
 Empty container. 
 Container contents 0 elements.
