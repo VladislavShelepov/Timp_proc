@@ -19,3 +19,5 @@ struct Container {
 void Clear(Container* c);
 void InCont(ifstream& ifst, Container* c);
 void OutCont(ofstream& ofst, Container* c);
+bool Compare(plant* p1, plant* p2);
+void Sort(Container& c);

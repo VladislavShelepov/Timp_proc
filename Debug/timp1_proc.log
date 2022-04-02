@@ -1,7 +1,2 @@
-﻿  Bush.cpp
-C:\Users\Shele\source\repos\timp1_proc\timp1_proc\Bush.cpp(94,20): warning C4018: <: несоответствие типов со знаком и без знака
-  timp1_proc.cpp
-  Tree.cpp
-C:\Users\Shele\source\repos\timp1_proc\timp1_proc\Tree.cpp(16,20): warning C4018: <: несоответствие типов со знаком и без знака
-  Создание кода...
-  timp1_proc.vcxproj -> C:\Users\Shele\source\repos\timp1_proc\Debug\timp1_proc.exe
+﻿  Container.cpp
+  timp1_proc.vcxproj -> C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\timp1_proc.exe
