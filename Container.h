@@ -19,3 +19,5 @@ struct Container {
 void Clear(Container* c);
 void InCont(ifstream& ifst, Container* c);
 void OutCont(ofstream& ofst, Container* c);
+void OutPlant(ofstream& ofst, Node* Container);
+void OutTrees(ofstream& ofst, Container* c);

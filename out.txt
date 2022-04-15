@@ -6,5 +6,10 @@ It is a bush. It's flowering month is July.
 It is a tree. It's age is 10 days.
 3: Name: kusttt
 It is a bush. It's flowering month is December.
+Only Trees: 
+1: 
+2: Name: derevo
+It is a tree. It's age is 10 days.
+3: 
 Empty container. 
 Container contents 0 elements.

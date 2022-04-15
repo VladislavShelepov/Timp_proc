@@ -36,6 +36,22 @@ void InCont(ifstream& ifst, Container* c) {
 		}
 	}
 }
+void OutPlant(ofstream& ofst, Node* Container)
+{
+	if (Container->plnt->key == tree)
+	{
+		tree_plant* pl;
+		pl = (tree_plant*)(Container->plnt->obj);
+		OutTree(ofst, *pl);
+	}
+	else
+	{
+		bush_plant* pn;
+		pn = (bush_plant*)(Container->plnt->obj);
+		OutBush(ofst, *pn);
+	}
+}
+
 void OutCont(ofstream& ofst, Container* c) {
 	ofst << "Container contents " << c->length << " elements." << endl;
 	int i = 1;
@@ -47,17 +63,30 @@ void OutCont(ofstream& ofst, Container* c) {
 	do
 	{
 		ofst << i << ": ";
+		OutPlant(ofst,c->Current);
+		c->Current = c->Current->next;
+		i++;
+	} while (c->Current != c->Head);
+}
+
+void OutTrees(ofstream& ofst, Container* c) {
+	ofst << "Only Trees: " << endl;
+	int i = 1;
+	if (c->Head == NULL)
+	{
+		return;
+	}
+	c->Current = c->Head;
+	do
+	{
+		ofst << i << ": ";
 		if (c->Current->plnt->key == tree)
 		{
-			tree_plant* pl;
-			pl = (tree_plant*)(c->Current->plnt->obj);
-			OutTree(ofst, *pl);
+			OutPlant(ofst, c->Current);
 		}
 		else
 		{
-			bush_plant* pn;
-			pn = (bush_plant*)(c->Current->plnt->obj);
-			OutBush(ofst, *pn);
+			ofst << endl;
 		}
 		c->Current = c->Current->next;
 		i++;
