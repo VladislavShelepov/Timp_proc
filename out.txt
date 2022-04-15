@@ -1,2 +1,19 @@
 Filled container. 
-Container contents 3 elements.
+Container contents 5 elements.
+1: Name: bbbbbush
+It is a bush. It's flowering month is September.
+Count of letters = 7
+2: Name: kusttt
+It is a bush. It's flowering month is December.
+Count of letters = 5
+3: Name: bush
+It is a bush. It's flowering month is July.
+Count of letters = 3
+4: Name: derevo
+It is a tree. It's age is 10 days.
+Count of letters = 3
+5: Name: aiva
+It is a bush. It's flowering month is September.
+Count of letters = 1
+Empty container. 
+Container contents 0 elements.

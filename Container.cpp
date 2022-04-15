@@ -38,12 +38,12 @@ void InCont(ifstream& ifst, Container* c) {
 }
 void OutCont(ofstream& ofst, Container* c) {
 	ofst << "Container contents " << c->length << " elements." << endl;
-	Sort(*c);
 	int i = 1;
 	if (c->Head == NULL)
 	{
 		return;
 	}
+	Sort(*c);
 	c->Current = c->Head;
 	do
 	{
@@ -74,11 +74,10 @@ bool Compare(Node* p1, Node* p2)
 void Sort(Container& c)
 {
 	Node* curr1 = c.Head;
-	
 	Node* curr2 = c.Head;
 	do {
 		curr2 = curr1->next;
-		while (curr2 != NULL) {
+		while (curr2 != c.Head) {
 			if (Compare(curr1, curr2))
 			{
 				swap(curr1->plnt, curr2->plnt);
