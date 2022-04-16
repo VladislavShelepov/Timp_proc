@@ -23,6 +23,10 @@ int main(int argc, char* argv[])
 	InCont(ifst, &c);
 	ofst << "Filled container. " << endl;
 	OutCont(ofst, &c);
+	ofst << endl;
+	ofst << "Sorted container. " << endl;
+	Sort(c);
+	OutCont(ofst, &c);
 	OutTrees(ofst, &c);
 	Clear(&c);
 	ofst << "Empty container. " << endl;

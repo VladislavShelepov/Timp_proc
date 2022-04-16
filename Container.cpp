@@ -43,12 +43,21 @@ void OutPlant(ofstream& ofst, Node* Container)
 		tree_plant* pl;
 		pl = (tree_plant*)(Container->plnt->obj);
 		OutTree(ofst, *pl);
+		ofst << "count of consonants: " << countLetters(*pl) << endl;
 	}
-	else
+	else if (Container->plnt->key == bush)
 	{
 		bush_plant* pn;
 		pn = (bush_plant*)(Container->plnt->obj);
 		OutBush(ofst, *pn);
+		ofst << "count of consonants: " << countLetters(*pn) << endl;
+	}
+	else
+	{
+		flower_plant* pf;
+		pf = (flower_plant*)(Container->plnt->obj);
+		OutFlower(ofst, *pf);
+		ofst << "count of consonants: " << countLetters(*pf) <<  endl;
 	}
 }
 
@@ -83,32 +92,11 @@ void OutTrees(ofstream& ofst, Container* c) {
 		ofst << i << ": ";
 		if (c->Current->plnt->key == tree)
 		{
-/* <<<<<<< HEAD
-			tree_plant* pl;
-			pl = (tree_plant*)(c->Current->plnt->obj);
-			OutTree(ofst, *pl); */
-/* 			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
-//======= */
 			OutPlant(ofst, c->Current);
-/* >>>>>>> new_filter */
 		}
 		else if (c->Current->plnt->key == bush)
 		{
-/* <<<<<<< HEAD
-			bush_plant* pn;
-			pn = (bush_plant*)(c->Current->plnt->obj);
-			OutBush(ofst, *pn);
-			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
-		}
-		else 
-		{
-			flower_plant* pf;
-			pf = (flower_plant*)(c->Current->plnt->obj);
-			OutFlower(ofst, *pf);
-			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
-//======= */
 			ofst << endl;
-/* >>>>>>> new_filter */
 		}
 		else if (c->Current->plnt->key == flower)
 		{
