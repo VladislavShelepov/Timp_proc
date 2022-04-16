@@ -3,7 +3,7 @@ using namespace std;
 
 void InBush(ifstream& ifst, bush_plant& a) {
 	ifst >> a.name;
-	int t;
+	int t,o;
 	ifst >> t;
 	switch (t)
 	{
@@ -42,6 +42,22 @@ void InBush(ifstream& ifst, bush_plant& a) {
 		break;
 	case 12:
 		a.blossom = December;
+		break;
+	}
+	ifst >> o;
+	switch (o)
+	{
+	case 1:
+		a.origin = tundraB;
+		break;
+	case 2:
+		a.origin = desertB;
+		break;
+	case 3:
+		a.origin = steppeB;
+		break;
+	case 4:
+		a.origin = forestB;
 		break;
 	}
 }
@@ -85,6 +101,21 @@ void OutBush(ofstream& ofst, bush_plant& a) {
 		break;
 	case 11:
 		ofst << "It is a bush. It's flowering month is December." << endl;
+		break;
+	}
+	switch (a.origin)
+	{
+	case 0:
+		ofst << "It grows in tundra." << endl;
+		break;
+	case 1:
+		ofst << "It grows in desert." << endl;
+		break;
+	case 2:
+		ofst << "It grows in steppe." << endl;
+		break;
+	case 3:
+		ofst << "It grows in forest." << endl;
 		break;
 	}
 }
