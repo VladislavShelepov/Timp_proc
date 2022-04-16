@@ -2,11 +2,15 @@ Filled container.
 Container contents 4 elements.
 1: Name: bush
 It is a bush. It's flowering month is July.
+It grows in steppe.
 2: Name: derevo
 It is a tree. It's age is 10 days.
+It grows in desert.
 3: Name: kusttt
 It is a bush. It's flowering month is December.
+It grows in tundra.
 4: Name: cvetocheck
 It is a flower. It's garden.
+It grows in desert.
 Empty container. 
 Container contents 0 elements.
