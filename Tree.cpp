@@ -42,3 +42,23 @@ void OutTree(ofstream& ofst, tree_plant& f) {
 		break;
 	}
 }
+int CountLettersTree(ofstream& ofst, tree_plant& f) {
+	int cnt = 0;
+	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+	for (int i = 0; i < f.name.length(); i++)
+	{
+		if (letters.find(f.name[i]) < letters.length())cnt++;
+	}
+	ofst << "count of consonants: " << cnt << endl;
+	return cnt;
+}
+int countLetters(tree_plant& f)
+{
+	int cnt = 0;
+	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+	for (int i = 0; i < f.name.length(); i++)
+	{
+		if (letters.find(f.name[i]) < letters.length())cnt++;
+	}
+	return cnt;
+}

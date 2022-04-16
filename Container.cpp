@@ -43,6 +43,7 @@ void OutCont(ofstream& ofst, Container* c) {
 	{
 		return;
 	}
+	Sort(*c);
 	c->Current = c->Head;
 	do
 	{
@@ -52,12 +53,14 @@ void OutCont(ofstream& ofst, Container* c) {
 			tree_plant* pl;
 			pl = (tree_plant*)(c->Current->plnt->obj);
 			OutTree(ofst, *pl);
+			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
 		}
 		else if (c->Current->plnt->key == bush)
 		{
 			bush_plant* pn;
 			pn = (bush_plant*)(c->Current->plnt->obj);
 			OutBush(ofst, *pn);
+			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
 		}
 		else 
 		{
@@ -68,4 +71,25 @@ void OutCont(ofstream& ofst, Container* c) {
 		c->Current = c->Current->next;
 		i++;
 	} while (c->Current != c->Head);
+}
+
+bool Compare(Node* p1, Node* p2)
+{
+	return countLetters(*p1->plnt) < countLetters(*p2->plnt);
+}
+void Sort(Container& c)
+{
+	Node* curr1 = c.Head;
+	Node* curr2 = c.Head;
+	do {
+		curr2 = curr1->next;
+		while (curr2 != c.Head) {
+			if (Compare(curr1, curr2))
+			{
+				swap(curr1->plnt, curr2->plnt);
+			}
+			curr2 = curr2->next;
+		}
+		curr1 = curr1->next;
+	} while (curr1 != c.Head);
 }

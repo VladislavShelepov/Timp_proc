@@ -11,3 +11,5 @@ struct bush_plant {
 };
 void InBush(ifstream& ifst, bush_plant& a);
 void OutBush(ofstream& ofst, bush_plant& a);
+int CountLettersBush(ofstream& ofst, bush_plant& a);
+int countLetters(bush_plant& a);

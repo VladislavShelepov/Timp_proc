@@ -13,3 +13,4 @@ struct plant {
 
 };
 plant* InPlant(ifstream& ifst);
+int countLetters(plant& pt);
