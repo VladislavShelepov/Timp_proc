@@ -67,6 +67,7 @@ void OutCont(ofstream& ofst, Container* c) {
 			flower_plant* pf;
 			pf = (flower_plant*)(c->Current->plnt->obj);
 			OutFlower(ofst, *pf);
+			ofst << "Count of letters = " << countLetters(*(c->Current->plnt)) << endl;
 		}
 		c->Current = c->Current->next;
 		i++;

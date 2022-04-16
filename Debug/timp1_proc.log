@@ -1,10 +1,3 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (timp1_oop.vcxproj).  Это может привести к ошибкам очистки и перестроения.
-  Bush.cpp
-  Container.cpp
-  Flower.cpp
   Plant.cpp
-  timp1_proc.cpp
-  Tree.cpp
-  Создание кода...
-  LINK : не найден или не выполнена сборка C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\timp1_proc.exe при последней инкрементной компоновке; выполняется полная компоновка
   timp1_proc.vcxproj -> C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\timp1_proc.exe

@@ -65,3 +65,23 @@ void OutFlower(ofstream& ofst, flower_plant& a) {
 		break;
 	}
 }
+int CountLettersFlower(ofstream& ofst, flower_plant& f) {
+	int cnt = 0;
+	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+	for (int i = 0; i < f.name.length(); i++)
+	{
+		if (letters.find(f.name[i]) < letters.length())cnt++;
+	}
+	ofst << "count of consonants: " << cnt << endl;
+	return cnt;
+}
+int countLetters(flower_plant& f)
+{
+	int cnt = 0;
+	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+	for (int i = 0; i < f.name.length(); i++)
+	{
+		if (letters.find(f.name[i]) < letters.length())cnt++;
+	}
+	return cnt;
+}

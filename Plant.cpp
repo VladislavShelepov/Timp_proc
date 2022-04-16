@@ -47,5 +47,11 @@ int countLetters(plant& pt)
 		bp = (bush_plant*)pt.obj;
 		return countLetters(*bp);
 	}
+	if (pt.key == flower)
+	{
+		flower_plant* bf;
+		bf = (flower_plant*)pt.obj;
+		return countLetters(*bf);
+	}
 	return 0;
 }

@@ -11,3 +11,5 @@ struct flower_plant {
 };
 void InFlower(ifstream& ifst, flower_plant& a);
 void OutFlower(ofstream& ofst, flower_plant& a);
+int CountLettersFlower(ofstream& ofst, flower_plant& f);
+int countLetters(flower_plant& f);
