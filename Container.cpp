@@ -38,26 +38,42 @@ void InCont(ifstream& ifst, Container* c) {
 }
 void OutPlant(ofstream& ofst, Node* Container)
 {
+	ofst << "Name: " << Container->plnt->name << endl;
 	if (Container->plnt->key == tree)
 	{
 		tree_plant* pl;
 		pl = (tree_plant*)(Container->plnt->obj);
 		OutTree(ofst, *pl);
-		ofst << "count of consonants: " << countLetters(*pl) << endl;
+		ofst << "count of consonants: " << countLetters(*Container->plnt) << endl;
 	}
 	else if (Container->plnt->key == bush)
 	{
 		bush_plant* pn;
 		pn = (bush_plant*)(Container->plnt->obj);
 		OutBush(ofst, *pn);
-		ofst << "count of consonants: " << countLetters(*pn) << endl;
+		ofst << "count of consonants: " << countLetters(*Container->plnt) << endl;
 	}
 	else
 	{
 		flower_plant* pf;
 		pf = (flower_plant*)(Container->plnt->obj);
 		OutFlower(ofst, *pf);
-		ofst << "count of consonants: " << countLetters(*pf) <<  endl;
+		ofst << "count of consonants: " << countLetters(*Container->plnt) <<  endl;
+	}
+	switch (Container->plnt->origin)
+	{
+	case 0:
+		ofst << "It grows in tundra." << endl;
+		break;
+	case 1:
+		ofst << "It grows in desert." << endl;
+		break;
+	case 2:
+		ofst << "It grows in steppe." << endl;
+		break;
+	case 3:
+		ofst << "It grows in forest." << endl;
+		break;
 	}
 }
 
@@ -68,7 +84,7 @@ void OutCont(ofstream& ofst, Container* c) {
 	{
 		return;
 	}
-	Sort(*c);
+	//Sort(*c);
 	c->Current = c->Head;
 	do
 	{

@@ -2,8 +2,7 @@
 using namespace std;
 
 void InBush(ifstream& ifst, bush_plant& a) {
-	ifst >> a.name;
-	int t,o;
+	int t;
 	ifst >> t;
 	switch (t)
 	{
@@ -44,26 +43,9 @@ void InBush(ifstream& ifst, bush_plant& a) {
 		a.blossom = December;
 		break;
 	}
-	ifst >> o;
-	switch (o)
-	{
-	case 1:
-		a.origin = tundraB;
-		break;
-	case 2:
-		a.origin = desertB;
-		break;
-	case 3:
-		a.origin = steppeB;
-		break;
-	case 4:
-		a.origin = forestB;
-		break;
-	}
 }
 
 void OutBush(ofstream& ofst, bush_plant& a) {
-	ofst << "Name: " << a.name << endl;
 	switch (a.blossom)
 	{
 	case 0:
@@ -103,39 +85,4 @@ void OutBush(ofstream& ofst, bush_plant& a) {
 		ofst << "It is a bush. It's flowering month is December." << endl;
 		break;
 	}
-	switch (a.origin)
-	{
-	case 0:
-		ofst << "It grows in tundra." << endl;
-		break;
-	case 1:
-		ofst << "It grows in desert." << endl;
-		break;
-	case 2:
-		ofst << "It grows in steppe." << endl;
-		break;
-	case 3:
-		ofst << "It grows in forest." << endl;
-		break;
-	}
-}
-int CountLettersBush(ofstream& ofst, bush_plant& a) {
-	int cnt = 0;
-	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
-	for (int i = 0; i < a.name.length(); i++)
-	{
-		if (letters.find(a.name[i]) < letters.length())cnt++;
-	}
-	ofst << "count of consonants: " << cnt << endl;
-	return cnt;
-}
-int countLetters(bush_plant& a)
-{
-	int cnt = 0;
-	string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
-	for (int i = 0; i < a.name.length(); i++)
-	{
-		if (letters.find(a.name[i]) < letters.length())cnt++;
-	}
-	return cnt;
 }

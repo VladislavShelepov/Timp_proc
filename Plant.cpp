@@ -8,6 +8,24 @@ plant* InPlant(ifstream& ifst) {
 	flower_plant* flow;
 	int k = 0;
 	ifst >> k;
+	ifst >> pt->name;
+	int o;
+	ifst >> o;
+	switch (o)
+	{
+	case 1:
+		pt->origin = tundra;
+		break;
+	case 2:
+		pt->origin = desert;
+		break;
+	case 3:
+		pt->origin = steppe;
+		break;
+	case 4:
+		pt->origin = forest;
+		break;
+	}
 	switch (k) {
 	case 1:
 		pt->key = tree;
@@ -35,23 +53,11 @@ plant* InPlant(ifstream& ifst) {
 
 int countLetters(plant& pt)
 {
-	if (pt.key == tree)
-	{
-		tree_plant* tp;
-		tp = (tree_plant*)pt.obj;
-		return countLetters(*tp);
-	}
-	if (pt.key == bush)
-	{
-		bush_plant* bp;
-		bp = (bush_plant*)pt.obj;
-		return countLetters(*bp);
-	}
-	if (pt.key == flower)
-	{
-		flower_plant* bf;
-		bf = (flower_plant*)pt.obj;
-		return countLetters(*bf);
-	}
-	return 0;
+		int cnt = 0;
+		string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+		for (int i = 0; i < pt.name.length(); i++)
+		{
+			if (letters.find(pt.name[i]) < letters.length())cnt++;
+		}
+		return cnt;
 }
