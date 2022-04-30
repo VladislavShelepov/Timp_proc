@@ -10,22 +10,6 @@ plant* InPlant(ifstream& ifst) {
 	ifst >> k;
 	ifst >> pt->name;
 	int o;
-	ifst >> o;
-	switch (o)
-	{
-	case 1:
-		pt->origin = tundra;
-		break;
-	case 2:
-		pt->origin = desert;
-		break;
-	case 3:
-		pt->origin = steppe;
-		break;
-	case 4:
-		pt->origin = forest;
-		break;
-	}
 	switch (k) {
 	case 1:
 		pt->key = tree;
@@ -47,6 +31,22 @@ plant* InPlant(ifstream& ifst) {
 		break;
 	default:
 		return 0;
+	}
+	ifst >> o;
+	switch (o)
+	{
+	case 1:
+		pt->origin = tundra;
+		break;
+	case 2:
+		pt->origin = desert;
+		break;
+	case 3:
+		pt->origin = steppe;
+		break;
+	case 4:
+		pt->origin = forest;
+		break;
 	}
 	return pt;
 }

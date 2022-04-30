@@ -14,3 +14,15 @@ kusttt
 cvetocheck
 2
 2
+1
+birch
+100
+4
+2
+raspberry
+6
+4
+3
+rose
+3
+2

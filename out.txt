@@ -1,40 +1,77 @@
 Filled container. 
-Container contents 4 elements.
+Container contents 7 elements.
 1: Name: bush
-It is a bush. It's flowering month is March.
+It is a bush. It's flowering month is July.
 count of consonants: 3
+It grows in steppe.
 2: Name: derevo
-It is a tree. It's age is 2 days.
+It is a tree. It's age is 10 days.
 count of consonants: 3
+It grows in desert.
 3: Name: kusttt
-It is a bush. It's flowering month is January.
+It is a bush. It's flowering month is December.
 count of consonants: 5
+It grows in tundra.
 4: Name: cvetocheck
 It is a flower. It's garden.
 count of consonants: 7
 It grows in desert.
+5: Name: birch
+It is a tree. It's age is 100 days.
+count of consonants: 4
+It grows in forest.
+6: Name: raspberry
+It is a bush. It's flowering month is June.
+count of consonants: 6
+It grows in forest.
+7: Name: rose
+It is a flower. It's wild.
+count of consonants: 2
+It grows in desert.
 
 Sorted container. 
-Container contents 4 elements.
+Container contents 7 elements.
 1: Name: cvetocheck
 It is a flower. It's garden.
 count of consonants: 7
 It grows in desert.
-2: Name: kusttt
-It is a bush. It's flowering month is January.
+2: Name: raspberry
+It is a bush. It's flowering month is June.
+count of consonants: 6
+It grows in forest.
+3: Name: kusttt
+It is a bush. It's flowering month is December.
 count of consonants: 5
-3: Name: bush
-It is a bush. It's flowering month is March.
+It grows in tundra.
+4: Name: birch
+It is a tree. It's age is 100 days.
+count of consonants: 4
+It grows in forest.
+5: Name: bush
+It is a bush. It's flowering month is July.
 count of consonants: 3
-4: Name: derevo
-It is a tree. It's age is 2 days.
+It grows in steppe.
+6: Name: derevo
+It is a tree. It's age is 10 days.
 count of consonants: 3
+It grows in desert.
+7: Name: rose
+It is a flower. It's wild.
+count of consonants: 2
+It grows in desert.
 Only Trees: 
 1: 
 2: 
 3: 
-4: Name: derevo
-It is a tree. It's age is 2 days.
+4: Name: birch
+It is a tree. It's age is 100 days.
+count of consonants: 4
+It grows in forest.
+5: 
+6: Name: derevo
+It is a tree. It's age is 10 days.
 count of consonants: 3
+It grows in desert.
+7: 
 Empty container. 
 Container contents 0 elements.
