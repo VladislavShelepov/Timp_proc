@@ -354,7 +354,7 @@ namespace UnitTest2
 					c1.Current = c1.Current->next;
 				}
 			}
-			TEST_METHOD(TestOutFeature)
+			TEST_METHOD(TestOutTrees)
 			{
 				ofstream ofst;
 				ofst.open("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTrees.txt");
