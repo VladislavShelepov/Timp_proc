@@ -1,3 +1,4 @@
 ﻿  UnitTest2.cpp
 C:\Users\Shele\Documents\GitHub\Timp_proc\Plant.cpp(58,21): warning C4018: <: несоответствие типов со знаком и без знака
+     Создается библиотека C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\UnitTest2.lib и объект C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\UnitTest2.exp
   UnitTest2.vcxproj -> C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\UnitTest2.dll

@@ -67,332 +67,353 @@ namespace UnitTest2
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt->key = new tree;
-				n1->fl->country = "USA";
-				n1->fl->name = "Star_Wars";
-				n1->fl->key = feature;
-				feature_film* f;
-				f = new feature_film;
-				f->director = "Lucas";
-				n1->fl->obj = (void*)f;
+				n1->plnt = new plant;
+				n1->plnt->name = "derevo";
+				n1->plnt->origin = desert;
+				n1->plnt->key = tree;
+				tree_plant* t;
+				t = new tree_plant;
+				t->age = 10;
+				n1->plnt->obj = (void*)t;
 
 				n2 = new Node;
-				n2->fl = new film;
-				n2->fl->country = "Japan";
-				n2->fl->name = "Cartoon1";
-				n2->fl->key = animation;
-				animation_film* a;
-				a = new animation_film;
-				a->woc = DRAWN;
-				n2->fl->obj = (void*)a;
+				n2->plnt = new plant;
+				n2->plnt->name = "bush";
+				n2->plnt->origin = tundra;
+				n2->plnt->key = bush;
+				bush_plant* b;
+				b = new bush_plant;
+				b->blossom = July;
+				n2->plnt->obj = (void*)b;
 
 				n3 = new Node;
-				n3->fl = new film;
-				n3->fl->country = "Italy";
-				n3->fl->name = "Doc2";
-				n3->fl->key = documentary;
-				documentary_film* d;
-				d = new documentary_film;
-				d->year = 2005;
-				n3->fl->obj = (void*)d;
+				n3->plnt = new plant;
+				n3->plnt->name = "cvetocheck";
+				n3->plnt->origin = steppe;
+				n3->plnt->key = flower;
+				flower_plant* f;
+				f = new flower_plant;
+				f->t = garden;
+				n3->plnt->obj = (void*)f;
 
-				c1.head = n1;
-				c1.head->next = n2;
-				c1.head->next->next = n3;
-				c1.size = 3;
+				c1.Head = n1;
+				c1.Head->next = n2;
+				c1.Head->next->next = n3;
+				c1.Head->prev = c1.Head->next->next;
+				c1.Head->next->prev = c1.Head;
+				c1.Head->next->next->prev = c1.Head->next;
+				c1.length = 3;
 
-				Assert::AreEqual(int(c1.size), int(c.size));
+				Assert::AreEqual(int(c1.length), int(c.length));
 
-				c.curr = c.head;
-				c1.curr = c1.head;
-				while (c1.curr != NULL)
+				c.Current = c.Head;
+				c1.Current = c1.Head;
+				while (c.Current->next != c.Head)
 				{
 
-					Assert::AreEqual(string(c1.curr->fl->country), string(c.curr->fl->country));
-					Assert::AreEqual(int(c1.curr->fl->key), int(c.curr->fl->key));
-					Assert::AreEqual(string(c1.curr->fl->name), string(c.curr->fl->name));
+					Assert::AreEqual(string(c1.Current->plnt->name), string(c.Current->plnt->name));
+					Assert::AreEqual(int(c1.Current->plnt->origin), int(c.Current->plnt->origin));
 
-					if (c1.curr->fl->key == feature)
+					if (c1.Current->plnt->key == tree)
 					{
-						Assert::AreEqual(((feature_film*)c1.curr->fl->obj)->director, ((feature_film*)c.curr->fl->obj)->director);
+						Assert::AreEqual(((tree_plant*)c1.Current->plnt->obj)->age, ((tree_plant*)c.Current->plnt->obj)->age);
 					}
-					if (c1.curr->fl->key == animation)
+					if (c1.Current->plnt->key == bush)
 					{
-						Assert::AreEqual(int(((animation_film*)c1.curr->fl->obj)->woc), int(((animation_film*)c.curr->fl->obj)->woc));
+						Assert::AreEqual(int(((bush_plant*)c1.Current->plnt->obj)->blossom), int(((bush_plant*)c.Current->plnt->obj)->blossom));
 					}
-					if (c1.curr->fl->key == documentary)
+					if (c1.Current->plnt->key == flower)
 					{
-						Assert::AreEqual(((documentary_film*)c1.curr->fl->obj)->year, ((documentary_film*)c.curr->fl->obj)->year);
+						Assert::AreEqual(int(((flower_plant*)c1.Current->plnt->obj)->t), int(((flower_plant*)c.Current->plnt->obj)->t));
 					}
-					c.curr = c.curr->next;
-					c1.curr = c1.curr->next;
+					c.Current = c.Current->next;
+					c1.Current = c1.Current->next;
 				}
 			}
-			//TEST_METHOD(TestOut)
-			//{
-			//	ofstream ofst("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outTest.txt");
-			//	bool exp = true;
-			//	bool res = false;
+			TEST_METHOD(TestOut)
+			{
+				ofstream ofst("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTest.txt");
+				bool exp = true;
+				bool res = false;
 
-			//	feature_film* f = new feature_film;
-			//	f->director = "Director";
+				tree_plant* t = new tree_plant;
+				t->age = 10;
 
-			//	documentary_film* d = new documentary_film;
-			//	d->year = 2000;
+				bush_plant* b = new bush_plant;
+				b->blossom = July;
 
-			//	animation_film* a = new animation_film;
-			//	a->woc = DOLL;
+				flower_plant* f = new flower_plant;
+				f->t = garden;
 
-			//	Out(ofst, *f);
-			//	Out(ofst, *d);
-			//	Out(ofst, *a);
+				OutTree(ofst, *t);
+				OutBush(ofst, *b);
+				OutFlower(ofst, *f);
 
-			//	ifstream ifst1("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outTest.txt");
-			//	ifstream ifst2("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/expOutTest.txt");
-			//	char c1, c2;
-			//	while (ifst1.get(c1) && ifst2.get(c2))
-			//	{
+				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTest.txt");
+				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutTest.txt");
+				char c1, c2;
+				while (ifst1.get(c1) && ifst2.get(c2))
+				{
+					Assert::AreEqual(c1, c2);
+				}
+			}
+			TEST_METHOD(TestOutput)
+			{
+				ofstream ofst;
+				ofst.open("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outputTest.txt");
+				Container c;
 
-			//		Assert::AreEqual(c1, c2);
-			//	}
-			//}
-			//TEST_METHOD(TestOutput)
-			//{
-			//	ofstream ofst;
-			//	ofst.open("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outputTest.txt");
-			//	container c;
+				bool res = true;
+				bool exp = true;
 
-			//	bool res = true;
-			//	bool exp = true;
+				Node* n1, * n2, * n3;
 
-			//	Node* n1, * n2, * n3;
+				n1 = new Node;
+				n1->plnt = new plant;
+				n1->plnt->name = "derevo";
+				n1->plnt->origin = desert;
+				n1->plnt->key = tree;
+				tree_plant* t;
+				t = new tree_plant;
+				t->age = 10;
+				n1->plnt->obj = (void*)t;
 
-			//	n1 = new Node;
-			//	n1->fl = new film;
-			//	n1->fl->country = "USA";
-			//	n1->fl->name = "Star_Wars";
-			//	n1->fl->key = feature;
-			//	feature_film* f;
-			//	f = new feature_film;
-			//	f->director = "Lucas";
-			//	n1->fl->obj = (void*)f;
+				n2 = new Node;
+				n2->plnt = new plant;
+				n2->plnt->name = "bush";
+				n2->plnt->origin = tundra;
+				n2->plnt->key = bush;
+				bush_plant* b;
+				b = new bush_plant;
+				b->blossom = July;
+				n2->plnt->obj = (void*)b;
 
-			//	n2 = new Node;
-			//	n2->fl = new film;
-			//	n2->fl->country = "Japan";
-			//	n2->fl->name = "Cartoon1";
-			//	n2->fl->key = animation;
-			//	animation_film* a;
-			//	a = new animation_film;
-			//	a->woc = DRAWN;
-			//	n2->fl->obj = (void*)a;
+				n3 = new Node;
+				n3->plnt = new plant;
+				n3->plnt->name = "cvetocheck";
+				n3->plnt->origin = steppe;
+				n3->plnt->key = flower;
+				flower_plant* f;
+				f = new flower_plant;
+				f->t = garden;
+				n3->plnt->obj = (void*)f;
 
-			//	n3 = new Node;
-			//	n3->fl = new film;
-			//	n3->fl->country = "Italy";
-			//	n3->fl->name = "Doc2oaa";
-			//	n3->fl->key = documentary;
-			//	documentary_film* d;
-			//	d = new documentary_film;
-			//	d->year = 2005;
-			//	n3->fl->obj = (void*)d;
+				c.Head = n1;
+				c.Head->next = n2;
+				c.Head->next->next = n3;
+				c.Head->prev = c.Head->next->next;
+				c.Head->next->prev = c.Head;
+				c.Head->next->next->prev = c.Head->next;
+				c.Head->next->next->next = c.Head;
+				c.length = 3;
+				c.Current = c.Head;
 
-			//	c.head = n1;
-			//	c.head->next = n2;
-			//	c.head->next->next = n3;
-			//	c.size = 3;
+				OutCont(ofst, &c);
 
-			//	OutCont(ofst, &c);
+				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outputTest.txt");
+				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutputTest.txt");
+				char c1, c2;
+				while (ifst1.get(c1) && ifst2.get(c2))
+				{
+					Assert::AreEqual(c1, c2);
+				}
+			}
+			TEST_METHOD(TestClear)
+			{
+				Container c;
 
-			//	ifstream ifst1("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outputTest.txt");
-			//	ifstream ifst2("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/expOutputTest.txt");
-			//	char c1, c2;
-			//	while (ifst1.get(c1) && ifst2.get(c2))
-			//	{
-			//		Assert::AreEqual(c1, c2);
-			//	}
-			//}
-			//TEST_METHOD(TestClear)
-			//{
-			//	container c;
+				bool res = true;
+				bool exp = true;
 
-			//	bool res = true;
-			//	bool exp = true;
+				Node* n1, * n2, * n3;
 
-			//	Node* n1, * n2, * n3;
+				n1 = new Node;
+				n1->plnt = new plant;
+				n1->plnt->name = "derevo";
+				n1->plnt->origin = desert;
+				n1->plnt->key = tree;
+				tree_plant* t;
+				t = new tree_plant;
+				t->age = 10;
+				n1->plnt->obj = (void*)t;
 
-			//	n1 = new Node;
-			//	n1->fl = new film;
-			//	n1->fl->country = "USA";
-			//	n1->fl->name = "Star_Wars";
-			//	n1->fl->key = feature;
-			//	feature_film* f;
-			//	f = new feature_film;
-			//	f->director = "Lucas";
-			//	n1->fl->obj = (void*)f;
+				n2 = new Node;
+				n2->plnt = new plant;
+				n2->plnt->name = "bush";
+				n2->plnt->origin = tundra;
+				n2->plnt->key = bush;
+				bush_plant* b;
+				b = new bush_plant;
+				b->blossom = July;
+				n2->plnt->obj = (void*)b;
 
-			//	n2 = new Node;
-			//	n2->fl = new film;
-			//	n2->fl->country = "Japan";
-			//	n2->fl->name = "Cartoon1";
-			//	n2->fl->key = animation;
-			//	animation_film* a;
-			//	a = new animation_film;
-			//	a->woc = DRAWN;
-			//	n2->fl->obj = (void*)a;
+				n3 = new Node;
+				n3->plnt = new plant;
+				n3->plnt->name = "cvetocheck";
+				n3->plnt->origin = steppe;
+				n3->plnt->key = flower;
+				flower_plant* f;
+				f = new flower_plant;
+				f->t = garden;
+				n3->plnt->obj = (void*)f;
 
-			//	n3 = new Node;
-			//	n3->fl = new film;
-			//	n3->fl->country = "Italy";
-			//	n3->fl->name = "Doc2oaa";
-			//	n3->fl->key = documentary;
-			//	documentary_film* d;
-			//	d = new documentary_film;
-			//	d->year = 2005;
-			//	n3->fl->obj = (void*)d;
+				c.Head = n1;
+				c.Head->next = n2;
+				c.Head->next->next = n3;
+				c.Head->prev = c.Head->next->next;
+				c.Head->next->prev = c.Head;
+				c.Head->next->next->prev = c.Head->next;
+				c.Head->next->next->next = c.Head;
+				c.length = 3;
+				c.Current = c.Head;
 
-			//	c.head = n1;
-			//	c.head->next = n2;
-			//	c.head->next->next = n3;
-			//	c.size = 3;
 
-			//	Clear(&c);
-			//	Assert::AreEqual(true, c.head == NULL);
-			//	Assert::AreEqual(true, c.curr == NULL);
-			//	Assert::AreEqual(true, c.size == 0);
-			//}
-			//TEST_METHOD(TestSort)
-			//{
-			//	container c1;
-			//	container c;
+				Clear(&c);
+				Assert::AreEqual(true, c.Head == NULL);
+				Assert::AreEqual(true, c.Current == NULL);
+				Assert::AreEqual(true, c.length == 0);
+			}
+			TEST_METHOD(TestSort)
+			{
+				Container c1;
+				Container c;
 
-			//	ifstream ifst("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/inputTest.txt");
+				ifstream ifst("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/sortTest.txt");
 
-			//	bool res = true;
-			//	bool exp = true;
+				bool res = true;
+				bool exp = true;
 
-			//	Node* n1, * n2, * n3;
+				Node* n1, * n2, * n3;
 
-			//	n1 = new Node;
-			//	n1->fl = new film;
-			//	n1->fl->country = "USA";
-			//	n1->fl->name = "Star_Wars";
-			//	n1->fl->key = feature;
-			//	feature_film* f;
-			//	f = new feature_film;
-			//	f->director = "Lucas";
-			//	n1->fl->obj = (void*)f;
+				n1 = new Node;
+				n1->plnt = new plant;
+				n1->plnt->name = "derevo";
+				n1->plnt->origin = desert;
+				n1->plnt->key = tree;
+				tree_plant* t;
+				t = new tree_plant;
+				t->age = 10;
+				n1->plnt->obj = (void*)t;
 
-			//	n2 = new Node;
-			//	n2->fl = new film;
-			//	n2->fl->country = "Japan";
-			//	n2->fl->name = "Cartoon1";
-			//	n2->fl->key = animation;
-			//	animation_film* a;
-			//	a = new animation_film;
-			//	a->woc = DRAWN;
-			//	n2->fl->obj = (void*)a;
+				n2 = new Node;
+				n2->plnt = new plant;
+				n2->plnt->name = "bush";
+				n2->plnt->origin = tundra;
+				n2->plnt->key = bush;
+				bush_plant* b;
+				b = new bush_plant;
+				b->blossom = July;
+				n2->plnt->obj = (void*)b;
 
-			//	n3 = new Node;
-			//	n3->fl = new film;
-			//	n3->fl->country = "Italy";
-			//	n3->fl->name = "Doc2";
-			//	n3->fl->key = documentary;
-			//	documentary_film* d;
-			//	d = new documentary_film;
-			//	d->year = 2005;
-			//	n3->fl->obj = (void*)d;
+				n3 = new Node;
+				n3->plnt = new plant;
+				n3->plnt->name = "cvetocheck";
+				n3->plnt->origin = steppe;
+				n3->plnt->key = flower;
+				flower_plant* f;
+				f = new flower_plant;
+				f->t = garden;
+				n3->plnt->obj = (void*)f;
 
-			//	c1.head = n2;
-			//	c1.head->next = n1;
-			//	c1.head->next->next = n3;
-			//	c1.size = 3;
+				c1.Head = n1;
+				c1.Head->next = n2;
+				c1.Head->next->next = n3;
+				c1.Head->prev = c1.Head->next->next;
+				c1.Head->next->prev = c1.Head;
+				c1.Head->next->next->prev = c1.Head->next;
+				c1.Head->next->next->next = c1.Head;
+				c1.length = 3;
+				//c.Current = c.Head;
 
-			//	InCont(ifst, &c);
-			//	Sort(c);
+				InCont(ifst, &c);
+				Sort(c1);
 
-			//	Assert::AreEqual(int(c1.size), int(c.size));
+				Assert::AreEqual(int(c1.length), int(c.length));
 
-			//	c.curr = c.head;
-			//	c1.curr = c1.head;
-			//	while (c1.curr != NULL)
-			//	{
+				c.Current = c.Head;
+				c1.Current = c1.Head;
+				while (c.Current->next != c.Head)
+				{
 
-			//		Assert::AreEqual(string(c1.curr->fl->country), string(c.curr->fl->country));
-			//		Assert::AreEqual(int(c1.curr->fl->key), int(c.curr->fl->key));
-			//		Assert::AreEqual(string(c1.curr->fl->name), string(c.curr->fl->name));
+					Assert::AreEqual(string(c1.Current->plnt->name), string(c.Current->plnt->name));
+					Assert::AreEqual(int(c1.Current->plnt->origin), int(c.Current->plnt->origin));
 
-			//		if (c1.curr->fl->key == feature)
-			//		{
-			//			Assert::AreEqual(((feature_film*)c1.curr->fl->obj)->director, ((feature_film*)c.curr->fl->obj)->director);
-			//		}
-			//		if (c1.curr->fl->key == animation)
-			//		{
-			//			Assert::AreEqual(int(((animation_film*)c1.curr->fl->obj)->woc), int(((animation_film*)c.curr->fl->obj)->woc));
-			//		}
-			//		if (c1.curr->fl->key == documentary)
-			//		{
-			//			Assert::AreEqual(((documentary_film*)c1.curr->fl->obj)->year, ((documentary_film*)c.curr->fl->obj)->year);
-			//		}
-			//		c.curr = c.curr->next;
-			//		c1.curr = c1.curr->next;
-			//	}
-			//}
-			//TEST_METHOD(TestOutFeature)
-			//{
-			//	ofstream ofst;
-			//	ofst.open("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outFeature.txt");
-			//	container c;
+					if (c1.Current->plnt->key == tree)
+					{
+						Assert::AreEqual(((tree_plant*)c1.Current->plnt->obj)->age, ((tree_plant*)c.Current->plnt->obj)->age);
+					}
+					if (c1.Current->plnt->key == bush)
+					{
+						Assert::AreEqual(int(((bush_plant*)c1.Current->plnt->obj)->blossom), int(((bush_plant*)c.Current->plnt->obj)->blossom));
+					}
+					if (c1.Current->plnt->key == flower)
+					{
+						Assert::AreEqual(int(((flower_plant*)c1.Current->plnt->obj)->t), int(((flower_plant*)c.Current->plnt->obj)->t));
+					}
+					c.Current = c.Current->next;
+					c1.Current = c1.Current->next;
+				}
+			}
+			TEST_METHOD(TestOutFeature)
+			{
+				ofstream ofst;
+				ofst.open("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTrees.txt");
+				Container c;
 
-			//	bool res = true;
-			//	bool exp = true;
+				bool res = true;
+				bool exp = true;
 
-			//	Node* n1, * n2, * n3;
+				Node* n1, * n2, * n3;
 
-			//	n1 = new Node;
-			//	n1->fl = new film;
-			//	n1->fl->country = "USA";
-			//	n1->fl->name = "Star_Wars";
-			//	n1->fl->key = feature;
-			//	feature_film* f;
-			//	f = new feature_film;
-			//	f->director = "Lucas";
-			//	n1->fl->obj = (void*)f;
+				n1 = new Node;
+				n1->plnt = new plant;
+				n1->plnt->name = "derevo";
+				n1->plnt->origin = desert;
+				n1->plnt->key = tree;
+				tree_plant* t;
+				t = new tree_plant;
+				t->age = 10;
+				n1->plnt->obj = (void*)t;
 
-			//	n2 = new Node;
-			//	n2->fl = new film;
-			//	n2->fl->country = "Japan";
-			//	n2->fl->name = "Cartoon1";
-			//	n2->fl->key = animation;
-			//	animation_film* a;
-			//	a = new animation_film;
-			//	a->woc = DRAWN;
-			//	n2->fl->obj = (void*)a;
+				n2 = new Node;
+				n2->plnt = new plant;
+				n2->plnt->name = "bush";
+				n2->plnt->origin = tundra;
+				n2->plnt->key = bush;
+				bush_plant* b;
+				b = new bush_plant;
+				b->blossom = July;
+				n2->plnt->obj = (void*)b;
 
-			//	n3 = new Node;
-			//	n3->fl = new film;
-			//	n3->fl->country = "Italy";
-			//	n3->fl->name = "Doc2oaa";
-			//	n3->fl->key = documentary;
-			//	documentary_film* d;
-			//	d = new documentary_film;
-			//	d->year = 2005;
-			//	n3->fl->obj = (void*)d;
+				n3 = new Node;
+				n3->plnt = new plant;
+				n3->plnt->name = "cvetocheck";
+				n3->plnt->origin = steppe;
+				n3->plnt->key = flower;
+				flower_plant* f;
+				f = new flower_plant;
+				f->t = garden;
+				n3->plnt->obj = (void*)f;
 
-			//	c.head = n1;
-			//	c.head->next = n2;
-			//	c.head->next->next = n3;
-			//	c.size = 3;
+				c.Head = n1;
+				c.Head->next = n2;
+				c.Head->next->next = n3;
+				c.Head->prev = c.Head->next->next;
+				c.Head->next->prev = c.Head;
+				c.Head->next->next->prev = c.Head->next;
+				c.Head->next->next->next = c.Head;
+				c.length = 3;
+				c.Current = c.Head;
 
-			//	OutFeature(ofst, &c);
+				OutTrees(ofst, &c);
 
-			//	ifstream ifst1("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/outFeature.txt");
-			//	ifstream ifst2("C:/Users/bushd/source/repos/TMPlab1Proc/UnitTestTMPlab4_Proc/expOutFeature.txt");
-			//	char c1, c2;
-			//	while (ifst1.get(c1) && ifst2.get(c2))
-			//	{
-			//		Assert::AreEqual(c1, c2);
-			//	}
-			//}
+				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTrees.txt");
+				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutTrees.txt");
+				char c1, c2;
+				while (ifst1.get(c1) && ifst2.get(c2))
+				{
+					Assert::AreEqual(c1, c2);
+				}
+			}
 	};
 }

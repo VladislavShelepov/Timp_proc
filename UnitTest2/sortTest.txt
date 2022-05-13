@@ -1,0 +1,12 @@
+3
+cvetocheck
+2
+3
+2
+bush
+7
+1
+1
+derevo
+10
+2

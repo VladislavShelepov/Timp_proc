@@ -1,0 +1,7 @@
+Only Trees: 
+1: Name: derevo
+It is a tree. It's age is 10 days.
+count of consonants: 3
+It grows in desert.
+2: 
+3: 

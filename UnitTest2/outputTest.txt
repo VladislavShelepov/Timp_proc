@@ -1,0 +1,13 @@
+Container contents 3 elements.
+1: Name: derevo
+It is a tree. It's age is 10 days.
+count of consonants: 3
+It grows in desert.
+2: Name: bush
+It is a bush. It's flowering month is July.
+count of consonants: 3
+It grows in tundra.
+3: Name: cvetocheck
+It is a flower. It's garden.
+count of consonants: 7
+It grows in steppe.
