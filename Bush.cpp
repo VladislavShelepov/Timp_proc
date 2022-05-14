@@ -1,7 +1,8 @@
 #include "Bush.h"
 using namespace std;
 
-void InBush(ifstream& ifst, bush_plant& a) {
+void inBush(ifstream& ifst, BushPlant& a) 
+{
 	int t;
 	ifst >> t;
 	switch (t)
@@ -45,7 +46,8 @@ void InBush(ifstream& ifst, bush_plant& a) {
 	}
 }
 
-void OutBush(ofstream& ofst, bush_plant& a) {
+void outBush(ofstream& ofst, BushPlant& a) 
+{
 	switch (a.blossom)
 	{
 	case 0:

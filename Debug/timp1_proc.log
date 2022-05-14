@@ -1,3 +1,16 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: промежуточный каталог (Debug\) содержит файлы, которые используются совместно с другим проектом (timp1_oop.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  Bush.cpp
+  Container.cpp
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(183,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(221,22): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(249,22): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(277,22): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(305,21): warning C4018: <: несоответствие типов со знаком и без знака
+  Flower.cpp
+  Plant.cpp
+C:\Users\Shele\Documents\GitHub\Timp_proc\Plant.cpp(59,21): warning C4018: <: несоответствие типов со знаком и без знака
+  Tree.cpp
   timp1_proc.cpp
+  Создание кода...
+C:\Users\Shele\Documents\GitHub\Timp_proc\Container.cpp(323): warning C4715: fileCheck: значение возвращается не при всех путях выполнения
   timp1_proc.vcxproj -> C:\Users\Shele\Documents\GitHub\Timp_proc\Debug\timp1_proc.exe

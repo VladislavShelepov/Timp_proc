@@ -1,10 +1,10 @@
 #include "Tree.h"
 using namespace std;
 
-void InTree(ifstream& ifst, tree_plant& f) {
+void inTree(ifstream& ifst, TreePlant& f) {
 	ifst >> f.age;
 }
 
-void OutTree(ofstream& ofst, tree_plant& f) {
+void outTree(ofstream& ofst, TreePlant& f) {
 	ofst << "It is a tree. It's age is " << f.age << " days." << endl;
 }

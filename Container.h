@@ -6,22 +6,22 @@
 using namespace std;
 
 struct Node {
-	plant* plnt = NULL;
+	Plant* plant = NULL;
     Node* next;
     Node* prev;
 };
 
 struct Container {
 	int length = 0;
-	Node* Current = NULL;
-	Node* Head = NULL;
+	Node* current = NULL;
+	Node* head = NULL;
 };
-void Clear(Container* c);
-void InCont(ifstream& ifst, Container* c);
-void OutCont(ofstream& ofst, Container* c);
-bool Compare(Node* p1, Node* p2);
-void Sort(Container& c);
-void OutPlant(ofstream& ofst, Node* Container);
-void OutTrees(ofstream& ofst, Container* c);
+void clear(Container* c);
+void inCont(ifstream& ifst, Container* c);
+void outCont(ofstream& ofst, Container* c);
+bool compare(Node* p1, Node* p2);
+void sort(Container& c);
+void outPlant(ofstream& ofst, Node* Container);
+void outTrees(ofstream& ofst, Container* c);
 
 bool fileCheck(ifstream& ifst, ofstream& ofst);

@@ -26,17 +26,17 @@ int main(int argc, char* argv[])
 	Container c;
 
 	string s1 = argv[1], s2 = argv[2];
-	InCont(ifst, &c);
+	inCont(ifst, &c);
 	ofst << "Filled container. " << endl;
-	OutCont(ofst, &c);
+	outCont(ofst, &c);
 	ofst << endl;
 	ofst << "Sorted container. " << endl;
-	Sort(c);
-	OutCont(ofst, &c);
-	OutTrees(ofst, &c);
-	Clear(&c);
+	sort(c);
+	outCont(ofst, &c);
+	outTrees(ofst, &c);
+	clear(&c);
 	ofst << "Empty container. " << endl;
-	OutCont(ofst, &c);
+	outCont(ofst, &c);
 	cout << "Stop" << endl;
 	return 0;
 }

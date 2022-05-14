@@ -1,33 +1,34 @@
 #include "Plant.h"
 using namespace std;
 
-plant* InPlant(ifstream& ifst) {
-	plant* pt = new plant;
-	tree_plant* f;
-	bush_plant* a;
-	flower_plant* flow;
-	int k = 0;
-	ifst >> k;
-	ifst >> pt->name;
+Plant* inPlant(ifstream& ifst) 
+{
+	Plant* ptant = new Plant;
+	TreePlant* f;
+	BushPlant* a;
+	FlowerPlant* flow;
+	int typeOfFlower = 0;
+	ifst >> typeOfFlower;
+	ifst >> ptant->name;
 	int o;
-	switch (k) {
+	switch (typeOfFlower) {
 	case 1:
-		pt->key = tree;
-		f = new tree_plant;
-		InTree(ifst, *f);
-		pt->obj = (void*)f;
+		ptant->key = tree;
+		f = new TreePlant;
+		inTree(ifst, *f);
+		ptant->obj = (void*)f;
 		break;
 	case 2:
-		pt->key = bush;
-		a = new bush_plant;
-		InBush(ifst, *a);
-		pt->obj = (void*)a;
+		ptant->key = bush;
+		a = new BushPlant;
+		inBush(ifst, *a);
+		ptant->obj = (void*)a;
 		break;
 	case 3:
-		pt->key = flower;
-		flow = new flower_plant;
-		InFlower(ifst, *flow);
-		pt->obj = (void*)flow;
+		ptant->key = flower;
+		flow = new FlowerPlant;
+		inFlower(ifst, *flow);
+		ptant->obj = (void*)flow;
 		break;
 	default:
 		return 0;
@@ -36,28 +37,28 @@ plant* InPlant(ifstream& ifst) {
 	switch (o)
 	{
 	case 1:
-		pt->origin = tundra;
+		ptant->origin = tundra;
 		break;
 	case 2:
-		pt->origin = desert;
+		ptant->origin = desert;
 		break;
 	case 3:
-		pt->origin = steppe;
+		ptant->origin = steppe;
 		break;
 	case 4:
-		pt->origin = forest;
+		ptant->origin = forest;
 		break;
 	}
-	return pt;
+	return ptant;
 }
 
-int countLetters(plant& pt)
+int countLetters(Plant& pt)
 {
 		int cnt = 0;
-		string letters = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
+		string LETTERS = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ";
 		for (int i = 0; i < pt.name.length(); i++)
 		{
-			if (letters.find(pt.name[i]) < letters.length())cnt++;
+			if (LETTERS.find(pt.name[i]) < LETTERS.length())cnt++;
 		}
 		return cnt;
 }

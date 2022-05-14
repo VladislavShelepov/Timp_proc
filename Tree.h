@@ -3,8 +3,9 @@
 #include <fstream>
 using namespace std;
 
-struct tree_plant {
+struct TreePlant 
+{
 	long age = 0;
 };
-void InTree(ifstream& ifst, tree_plant& f);
-void OutTree(ofstream& ofst, tree_plant& f);
+void inTree(ifstream& ifst, TreePlant& f);
+void outTree(ofstream& ofst, TreePlant& f);

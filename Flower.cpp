@@ -1,7 +1,7 @@
 #include "Flower.h"
 using namespace std;
 
-void InFlower(ifstream& ifst, flower_plant& a) {
+void inFlower(ifstream& ifst, FlowerPlant& a) {
 	int b;
 	ifst >> b;
 	switch (b)
@@ -18,7 +18,7 @@ void InFlower(ifstream& ifst, flower_plant& a) {
 	}
 }
 
-void OutFlower(ofstream& ofst, flower_plant& a) {
+void outFlower(ofstream& ofst, FlowerPlant& a) {
 	switch (a.t)
 	{
 	case 0:

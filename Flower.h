@@ -2,9 +2,10 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-enum Type { domestic, garden, wild };
-struct flower_plant {
-	Type t;
+enum typeOfFlower { domestic, garden, wild };
+struct FlowerPlant 
+{
+	typeOfFlower t;
 };
-void InFlower(ifstream& ifst, flower_plant& a);
-void OutFlower(ofstream& ofst, flower_plant& a);
+void inFlower(ifstream& ifst, FlowerPlant& a);
+void outFlower(ofstream& ofst, FlowerPlant& a);

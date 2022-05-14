@@ -15,7 +15,7 @@ namespace UnitTest2
 
 			TEST_METHOD(TestCountLetters)
 			{
-				plant pt;
+				Plant pt;
 				pt.name = "bbbbab";
 				int res = countLetters(pt);
 				int exp = 5;
@@ -23,15 +23,15 @@ namespace UnitTest2
 			}
 			TEST_METHOD(TestCompare)
 			{
-				plant pt1, pt2;
+				Plant pt1, pt2;
 				pt1.name = "bbbb";
 				pt2.name = "bb";
 				Node* n1, * n2;
 				n1 = new Node;
 				n2 = new Node;
-				n1->plnt = &pt1;
-				n2->plnt = &pt2;
-				bool res = Compare(n1, n2);
+				n1->plant = &pt1;
+				n2->plant = &pt2;
+				bool res = compare(n1, n2);
 				bool exp = false;
 				Assert::AreEqual(exp, res);
 			}
@@ -39,13 +39,13 @@ namespace UnitTest2
 			{
 				ifstream ifst("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/inTest.txt");
 
-				tree_plant* f = new tree_plant;
-				bush_plant* d = new bush_plant;
-				flower_plant* a = new flower_plant;
+				TreePlant* f = new TreePlant;
+				BushPlant* d = new BushPlant;
+				FlowerPlant* a = new FlowerPlant;
 
-				InTree(ifst, *f);
-				InBush(ifst, *d);
-				InFlower(ifst, *a);
+				inTree(ifst, *f);
+				inBush(ifst, *d);
+				inFlower(ifst, *a);
 
 				Assert::AreEqual(long(10), f->age);
 				Assert::AreEqual(int(d->blossom), int(January));
@@ -61,73 +61,73 @@ namespace UnitTest2
 				bool exp = true;
 
 				//Assert::AreEqual(res, exp);
-				InCont(ifst, &c);
+				inCont(ifst, &c);
 
 				Container c1;
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt = new plant;
-				n1->plnt->name = "derevo";
-				n1->plnt->origin = desert;
-				n1->plnt->key = tree;
-				tree_plant* t;
-				t = new tree_plant;
+				n1->plant = new Plant;
+				n1->plant->name = "derevo";
+				n1->plant->origin = desert;
+				n1->plant->key = tree;
+				TreePlant* t;
+				t = new TreePlant;
 				t->age = 10;
-				n1->plnt->obj = (void*)t;
+				n1->plant->obj = (void*)t;
 
 				n2 = new Node;
-				n2->plnt = new plant;
-				n2->plnt->name = "bush";
-				n2->plnt->origin = tundra;
-				n2->plnt->key = bush;
-				bush_plant* b;
-				b = new bush_plant;
+				n2->plant = new Plant;
+				n2->plant->name = "bush";
+				n2->plant->origin = tundra;
+				n2->plant->key = bush;
+				BushPlant* b;
+				b = new BushPlant;
 				b->blossom = July;
-				n2->plnt->obj = (void*)b;
+				n2->plant->obj = (void*)b;
 
 				n3 = new Node;
-				n3->plnt = new plant;
-				n3->plnt->name = "cvetocheck";
-				n3->plnt->origin = steppe;
-				n3->plnt->key = flower;
-				flower_plant* f;
-				f = new flower_plant;
+				n3->plant = new Plant;
+				n3->plant->name = "cvetocheck";
+				n3->plant->origin = steppe;
+				n3->plant->key = flower;
+				FlowerPlant* f;
+				f = new FlowerPlant;
 				f->t = garden;
-				n3->plnt->obj = (void*)f;
+				n3->plant->obj = (void*)f;
 
-				c1.Head = n1;
-				c1.Head->next = n2;
-				c1.Head->next->next = n3;
-				c1.Head->prev = c1.Head->next->next;
-				c1.Head->next->prev = c1.Head;
-				c1.Head->next->next->prev = c1.Head->next;
+				c1.head = n1;
+				c1.head->next = n2;
+				c1.head->next->next = n3;
+				c1.head->prev = c1.head->next->next;
+				c1.head->next->prev = c1.head;
+				c1.head->next->next->prev = c1.head->next;
 				c1.length = 3;
 
 				Assert::AreEqual(int(c1.length), int(c.length));
 
-				c.Current = c.Head;
-				c1.Current = c1.Head;
-				while (c.Current->next != c.Head)
+				c.current = c.head;
+				c1.current = c1.head;
+				while (c.current->next != c.head)
 				{
 
-					Assert::AreEqual(string(c1.Current->plnt->name), string(c.Current->plnt->name));
-					Assert::AreEqual(int(c1.Current->plnt->origin), int(c.Current->plnt->origin));
+					Assert::AreEqual(string(c1.current->plant->name), string(c.current->plant->name));
+					Assert::AreEqual(int(c1.current->plant->origin), int(c.current->plant->origin));
 
-					if (c1.Current->plnt->key == tree)
+					if (c1.current->plant->key == tree)
 					{
-						Assert::AreEqual(((tree_plant*)c1.Current->plnt->obj)->age, ((tree_plant*)c.Current->plnt->obj)->age);
+						Assert::AreEqual(((TreePlant*)c1.current->plant->obj)->age, ((TreePlant*)c.current->plant->obj)->age);
 					}
-					if (c1.Current->plnt->key == bush)
+					if (c1.current->plant->key == bush)
 					{
-						Assert::AreEqual(int(((bush_plant*)c1.Current->plnt->obj)->blossom), int(((bush_plant*)c.Current->plnt->obj)->blossom));
+						Assert::AreEqual(int(((BushPlant*)c1.current->plant->obj)->blossom), int(((BushPlant*)c.current->plant->obj)->blossom));
 					}
-					if (c1.Current->plnt->key == flower)
+					if (c1.current->plant->key == flower)
 					{
-						Assert::AreEqual(int(((flower_plant*)c1.Current->plnt->obj)->t), int(((flower_plant*)c.Current->plnt->obj)->t));
+						Assert::AreEqual(int(((FlowerPlant*)c1.current->plant->obj)->t), int(((FlowerPlant*)c.current->plant->obj)->t));
 					}
-					c.Current = c.Current->next;
-					c1.Current = c1.Current->next;
+					c.current = c.current->next;
+					c1.current = c1.current->next;
 				}
 			}
 			TEST_METHOD(TestOut)
@@ -136,18 +136,18 @@ namespace UnitTest2
 				bool exp = true;
 				bool res = false;
 
-				tree_plant* t = new tree_plant;
+				TreePlant* t = new TreePlant;
 				t->age = 10;
 
-				bush_plant* b = new bush_plant;
+				BushPlant* b = new BushPlant;
 				b->blossom = July;
 
-				flower_plant* f = new flower_plant;
+				FlowerPlant* f = new FlowerPlant;
 				f->t = garden;
 
-				OutTree(ofst, *t);
-				OutBush(ofst, *b);
-				OutFlower(ofst, *f);
+				outTree(ofst, *t);
+				outBush(ofst, *b);
+				outFlower(ofst, *f);
 
 				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTest.txt");
 				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutTest.txt");
@@ -169,46 +169,46 @@ namespace UnitTest2
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt = new plant;
-				n1->plnt->name = "derevo";
-				n1->plnt->origin = desert;
-				n1->plnt->key = tree;
-				tree_plant* t;
-				t = new tree_plant;
+				n1->plant = new Plant;
+				n1->plant->name = "derevo";
+				n1->plant->origin = desert;
+				n1->plant->key = tree;
+				TreePlant* t;
+				t = new TreePlant;
 				t->age = 10;
-				n1->plnt->obj = (void*)t;
+				n1->plant->obj = (void*)t;
 
 				n2 = new Node;
-				n2->plnt = new plant;
-				n2->plnt->name = "bush";
-				n2->plnt->origin = tundra;
-				n2->plnt->key = bush;
-				bush_plant* b;
-				b = new bush_plant;
+				n2->plant = new Plant;
+				n2->plant->name = "bush";
+				n2->plant->origin = tundra;
+				n2->plant->key = bush;
+				BushPlant* b;
+				b = new BushPlant;
 				b->blossom = July;
-				n2->plnt->obj = (void*)b;
+				n2->plant->obj = (void*)b;
 
 				n3 = new Node;
-				n3->plnt = new plant;
-				n3->plnt->name = "cvetocheck";
-				n3->plnt->origin = steppe;
-				n3->plnt->key = flower;
-				flower_plant* f;
-				f = new flower_plant;
+				n3->plant = new Plant;
+				n3->plant->name = "cvetocheck";
+				n3->plant->origin = steppe;
+				n3->plant->key = flower;
+				FlowerPlant* f;
+				f = new FlowerPlant;
 				f->t = garden;
-				n3->plnt->obj = (void*)f;
+				n3->plant->obj = (void*)f;
 
-				c.Head = n1;
-				c.Head->next = n2;
-				c.Head->next->next = n3;
-				c.Head->prev = c.Head->next->next;
-				c.Head->next->prev = c.Head;
-				c.Head->next->next->prev = c.Head->next;
-				c.Head->next->next->next = c.Head;
+				c.head = n1;
+				c.head->next = n2;
+				c.head->next->next = n3;
+				c.head->prev = c.head->next->next;
+				c.head->next->prev = c.head;
+				c.head->next->next->prev = c.head->next;
+				c.head->next->next->next = c.head;
 				c.length = 3;
-				c.Current = c.Head;
+				c.current = c.head;
 
-				OutCont(ofst, &c);
+				outCont(ofst, &c);
 
 				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outputTest.txt");
 				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutputTest.txt");
@@ -228,49 +228,49 @@ namespace UnitTest2
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt = new plant;
-				n1->plnt->name = "derevo";
-				n1->plnt->origin = desert;
-				n1->plnt->key = tree;
-				tree_plant* t;
-				t = new tree_plant;
+				n1->plant = new Plant;
+				n1->plant->name = "derevo";
+				n1->plant->origin = desert;
+				n1->plant->key = tree;
+				TreePlant* t;
+				t = new TreePlant;
 				t->age = 10;
-				n1->plnt->obj = (void*)t;
+				n1->plant->obj = (void*)t;
 
 				n2 = new Node;
-				n2->plnt = new plant;
-				n2->plnt->name = "bush";
-				n2->plnt->origin = tundra;
-				n2->plnt->key = bush;
-				bush_plant* b;
-				b = new bush_plant;
+				n2->plant = new Plant;
+				n2->plant->name = "bush";
+				n2->plant->origin = tundra;
+				n2->plant->key = bush;
+				BushPlant* b;
+				b = new BushPlant;
 				b->blossom = July;
-				n2->plnt->obj = (void*)b;
+				n2->plant->obj = (void*)b;
 
 				n3 = new Node;
-				n3->plnt = new plant;
-				n3->plnt->name = "cvetocheck";
-				n3->plnt->origin = steppe;
-				n3->plnt->key = flower;
-				flower_plant* f;
-				f = new flower_plant;
+				n3->plant = new Plant;
+				n3->plant->name = "cvetocheck";
+				n3->plant->origin = steppe;
+				n3->plant->key = flower;
+				FlowerPlant* f;
+				f = new FlowerPlant;
 				f->t = garden;
-				n3->plnt->obj = (void*)f;
+				n3->plant->obj = (void*)f;
 
-				c.Head = n1;
-				c.Head->next = n2;
-				c.Head->next->next = n3;
-				c.Head->prev = c.Head->next->next;
-				c.Head->next->prev = c.Head;
-				c.Head->next->next->prev = c.Head->next;
-				c.Head->next->next->next = c.Head;
+				c.head = n1;
+				c.head->next = n2;
+				c.head->next->next = n3;
+				c.head->prev = c.head->next->next;
+				c.head->next->prev = c.head;
+				c.head->next->next->prev = c.head->next;
+				c.head->next->next->next = c.head;
 				c.length = 3;
-				c.Current = c.Head;
+				c.current = c.head;
 
 
-				Clear(&c);
-				Assert::AreEqual(true, c.Head == NULL);
-				Assert::AreEqual(true, c.Current == NULL);
+				clear(&c);
+				Assert::AreEqual(true, c.head == NULL);
+				Assert::AreEqual(true, c.current == NULL);
 				Assert::AreEqual(true, c.length == 0);
 			}
 			TEST_METHOD(TestSort)
@@ -286,72 +286,72 @@ namespace UnitTest2
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt = new plant;
-				n1->plnt->name = "derevo";
-				n1->plnt->origin = desert;
-				n1->plnt->key = tree;
-				tree_plant* t;
-				t = new tree_plant;
+				n1->plant = new Plant;
+				n1->plant->name = "derevo";
+				n1->plant->origin = desert;
+				n1->plant->key = tree;
+				TreePlant* t;
+				t = new TreePlant;
 				t->age = 10;
-				n1->plnt->obj = (void*)t;
+				n1->plant->obj = (void*)t;
 
 				n2 = new Node;
-				n2->plnt = new plant;
-				n2->plnt->name = "bush";
-				n2->plnt->origin = tundra;
-				n2->plnt->key = bush;
-				bush_plant* b;
-				b = new bush_plant;
+				n2->plant = new Plant;
+				n2->plant->name = "bush";
+				n2->plant->origin = tundra;
+				n2->plant->key = bush;
+				BushPlant* b;
+				b = new BushPlant;
 				b->blossom = July;
-				n2->plnt->obj = (void*)b;
+				n2->plant->obj = (void*)b;
 
 				n3 = new Node;
-				n3->plnt = new plant;
-				n3->plnt->name = "cvetocheck";
-				n3->plnt->origin = steppe;
-				n3->plnt->key = flower;
-				flower_plant* f;
-				f = new flower_plant;
+				n3->plant = new Plant;
+				n3->plant->name = "cvetocheck";
+				n3->plant->origin = steppe;
+				n3->plant->key = flower;
+				FlowerPlant* f;
+				f = new FlowerPlant;
 				f->t = garden;
-				n3->plnt->obj = (void*)f;
+				n3->plant->obj = (void*)f;
 
-				c1.Head = n1;
-				c1.Head->next = n2;
-				c1.Head->next->next = n3;
-				c1.Head->prev = c1.Head->next->next;
-				c1.Head->next->prev = c1.Head;
-				c1.Head->next->next->prev = c1.Head->next;
-				c1.Head->next->next->next = c1.Head;
+				c1.head = n1;
+				c1.head->next = n2;
+				c1.head->next->next = n3;
+				c1.head->prev = c1.head->next->next;
+				c1.head->next->prev = c1.head;
+				c1.head->next->next->prev = c1.head->next;
+				c1.head->next->next->next = c1.head;
 				c1.length = 3;
 				//c.Current = c.Head;
 
-				InCont(ifst, &c);
-				Sort(c1);
+				inCont(ifst, &c);
+				sort(c1);
 
 				Assert::AreEqual(int(c1.length), int(c.length));
 
-				c.Current = c.Head;
-				c1.Current = c1.Head;
-				while (c.Current->next != c.Head)
+				c.current = c.head;
+				c1.current = c1.head;
+				while (c.current->next != c.head)
 				{
 
-					Assert::AreEqual(string(c1.Current->plnt->name), string(c.Current->plnt->name));
-					Assert::AreEqual(int(c1.Current->plnt->origin), int(c.Current->plnt->origin));
+					Assert::AreEqual(string(c1.current->plant->name), string(c.current->plant->name));
+					Assert::AreEqual(int(c1.current->plant->origin), int(c.current->plant->origin));
 
-					if (c1.Current->plnt->key == tree)
+					if (c1.current->plant->key == tree)
 					{
-						Assert::AreEqual(((tree_plant*)c1.Current->plnt->obj)->age, ((tree_plant*)c.Current->plnt->obj)->age);
+						Assert::AreEqual(((TreePlant*)c1.current->plant->obj)->age, ((TreePlant*)c.current->plant->obj)->age);
 					}
-					if (c1.Current->plnt->key == bush)
+					if (c1.current->plant->key == bush)
 					{
-						Assert::AreEqual(int(((bush_plant*)c1.Current->plnt->obj)->blossom), int(((bush_plant*)c.Current->plnt->obj)->blossom));
+						Assert::AreEqual(int(((BushPlant*)c1.current->plant->obj)->blossom), int(((BushPlant*)c.current->plant->obj)->blossom));
 					}
-					if (c1.Current->plnt->key == flower)
+					if (c1.current->plant->key == flower)
 					{
-						Assert::AreEqual(int(((flower_plant*)c1.Current->plnt->obj)->t), int(((flower_plant*)c.Current->plnt->obj)->t));
+						Assert::AreEqual(int(((FlowerPlant*)c1.current->plant->obj)->t), int(((FlowerPlant*)c.current->plant->obj)->t));
 					}
-					c.Current = c.Current->next;
-					c1.Current = c1.Current->next;
+					c.current = c.current->next;
+					c1.current = c1.current->next;
 				}
 			}
 			TEST_METHOD(TestOutTrees)
@@ -366,46 +366,46 @@ namespace UnitTest2
 				Node* n1, * n2, * n3;
 
 				n1 = new Node;
-				n1->plnt = new plant;
-				n1->plnt->name = "derevo";
-				n1->plnt->origin = desert;
-				n1->plnt->key = tree;
-				tree_plant* t;
-				t = new tree_plant;
+				n1->plant = new Plant;
+				n1->plant->name = "derevo";
+				n1->plant->origin = desert;
+				n1->plant->key = tree;
+				TreePlant* t;
+				t = new TreePlant;
 				t->age = 10;
-				n1->plnt->obj = (void*)t;
+				n1->plant->obj = (void*)t;
 
 				n2 = new Node;
-				n2->plnt = new plant;
-				n2->plnt->name = "bush";
-				n2->plnt->origin = tundra;
-				n2->plnt->key = bush;
-				bush_plant* b;
-				b = new bush_plant;
+				n2->plant = new Plant;
+				n2->plant->name = "bush";
+				n2->plant->origin = tundra;
+				n2->plant->key = bush;
+				BushPlant* b;
+				b = new BushPlant;
 				b->blossom = July;
-				n2->plnt->obj = (void*)b;
+				n2->plant->obj = (void*)b;
 
 				n3 = new Node;
-				n3->plnt = new plant;
-				n3->plnt->name = "cvetocheck";
-				n3->plnt->origin = steppe;
-				n3->plnt->key = flower;
-				flower_plant* f;
-				f = new flower_plant;
+				n3->plant = new Plant;
+				n3->plant->name = "cvetocheck";
+				n3->plant->origin = steppe;
+				n3->plant->key = flower;
+				FlowerPlant* f;
+				f = new FlowerPlant;
 				f->t = garden;
-				n3->plnt->obj = (void*)f;
+				n3->plant->obj = (void*)f;
 
-				c.Head = n1;
-				c.Head->next = n2;
-				c.Head->next->next = n3;
-				c.Head->prev = c.Head->next->next;
-				c.Head->next->prev = c.Head;
-				c.Head->next->next->prev = c.Head->next;
-				c.Head->next->next->next = c.Head;
+				c.head = n1;
+				c.head->next = n2;
+				c.head->next->next = n3;
+				c.head->prev = c.head->next->next;
+				c.head->next->prev = c.head;
+				c.head->next->next->prev = c.head->next;
+				c.head->next->next->next = c.head;
 				c.length = 3;
-				c.Current = c.Head;
+				c.current = c.head;
 
-				OutTrees(ofst, &c);
+				outTrees(ofst, &c);
 
 				ifstream ifst1("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/outTrees.txt");
 				ifstream ifst2("C:/Users/Shele/Documents/GitHub/Timp_proc/UnitTest2/expOutTrees.txt");

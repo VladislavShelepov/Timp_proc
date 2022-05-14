@@ -2,66 +2,68 @@
 #include <string>
 using namespace std;
 
-void Clear(Container* c) {
-	c->Current = NULL;
+void clear(Container* c) 
+{
+	c->current = NULL;
 	c->length = 0;
-	c->Head = 0;
+	c->head = 0;
 }
 
-void InCont(ifstream& ifst, Container* c) {
-	while (!ifst.eof()) {
-
+void inCont(ifstream& ifst, Container* c) 
+{
+	while (!ifst.eof()) 
+	{
 		Node* newNode = new Node;
-		newNode->plnt = InPlant(ifst);
-		//tree_plant* ptnt = (tree_plant*)newNode->plnt->obj;
-		if (c->Head == NULL)
+		newNode->plant = inPlant(ifst);
+		if (c->head == NULL)
 		{
-			c->Head = newNode;
-			c->Head->next = newNode;
-			c->Head->prev = newNode;
+			c->head = newNode;
+			c->head->next = newNode;
+			c->head->prev = newNode;
 			c->length = 1;
 		}
 		else
 		{
-			c->Current = c->Head;
-			while (c->Current->next != c->Head)
+			c->current = c->head;
+			while (c->current->next != c->head)
 			{
-				c->Current = c->Current->next;
+				c->current = c->current->next;
 			}
-			c->Current->next = newNode;
-			c->Current->next->prev = c->Current;
-			c->Current = c->Current->next;
-			c->Current->next = c->Head;
-			c->Head->prev = c->Current;
+			c->current->next = newNode;
+			c->current->next->prev = c->current;
+			c->current = c->current->next;
+			c->current->next = c->head;
+			c->head->prev = c->current;
 			c->length++;
 		}
 	}
 }
-void OutPlant(ofstream& ofst, Node* Container)
+void outPlant(ofstream& ofst, Node* Container)
 {
-	ofst << "Name: " << Container->plnt->name << endl;
-	if (Container->plnt->key == tree)
+	ofst << "Name: " << Container->plant->name << endl;
+	if (Container->plant->key == tree)
 	{
-		tree_plant* pl;
-		pl = (tree_plant*)(Container->plnt->obj);
-		OutTree(ofst, *pl);
-		ofst << "count of consonants: " << countLetters(*Container->plnt) << endl;
+		TreePlant* treePl;
+		treePl = (TreePlant*)(Container->plant->obj);
+		outTree(ofst, *treePl);
+		ofst << "count of consonants: " << countLetters(*Container->plant) << endl;
 	}
-	else if (Container->plnt->key == bush)
+	else if (Container->plant->key == bush)
 	{
-		bush_plant* pn;
-		pn = (bush_plant*)(Container->plnt->obj);
-		OutBush(ofst, *pn);
-		ofst << "count of consonants: " << countLetters(*Container->plnt) << endl;
+		BushPlant* bushPl;
+		bushPl = (BushPlant*)(Container->plant->obj);
+		outBush(ofst, *bushPl);
+		ofst << "count of consonants: " << countLetters(*Container->plant) << endl;
 	}
 	else
 	{
-		flower_plant* pf;
-		pf = (flower_plant*)(Container->plnt->obj);
-		OutFlower(ofst, *pf);
-		ofst << "count of consonants: " << countLetters(*Container->plnt) <<  endl;
+		FlowerPlant* flowerPl;
+		flowerPl = (FlowerPlant*)(Container->plant->obj);
+		outFlower(ofst, *flowerPl);
+		ofst << "count of consonants: " << countLetters(*Container->plant) <<  endl;
 	}
-	switch (Container->plnt->origin)
+
+	switch (Container->plant->origin)
 	{
 	case 0:
 		ofst << "It grows in tundra." << endl;
@@ -78,81 +80,83 @@ void OutPlant(ofstream& ofst, Node* Container)
 	}
 }
 
-void OutCont(ofstream& ofst, Container* c) {
+void outCont(ofstream& ofst, Container* c) 
+{
 	ofst << "Container contents " << c->length << " elements." << endl;
 	int i = 1;
-	if (c->Head == NULL)
+	if (c->head == NULL)
 	{
 		return;
 	}
-	//Sort(*c);
-	c->Current = c->Head;
+	c->current = c->head;
 	do
 	{
 		ofst << i << ": ";
-		OutPlant(ofst,c->Current);
-		c->Current = c->Current->next;
+		outPlant(ofst,c->current);
+		c->current = c->current->next;
 		i++;
-	} while (c->Current != c->Head);
+	} while (c->current != c->head);
 }
 
-void OutTrees(ofstream& ofst, Container* c) {
+void outTrees(ofstream& ofst, Container* c) 
+{
 	ofst << "Only Trees: " << endl;
 	int i = 1;
-	if (c->Head == NULL)
+	if (c->head == NULL)
 	{
 		return;
 	}
-	c->Current = c->Head;
+
+	c->current = c->head;
 	do
 	{
 		ofst << i << ": ";
-		if (c->Current->plnt->key == tree)
+		if (c->current->plant->key == tree)
 		{
-			OutPlant(ofst, c->Current);
+			outPlant(ofst, c->current);
 		}
-		else if (c->Current->plnt->key == bush)
+		else if (c->current->plant->key == bush)
 		{
 			ofst << endl;
 		}
-		else if (c->Current->plnt->key == flower)
+		else if (c->current->plant->key == flower)
 		{
 			ofst << endl;
 		}
 	
-		c->Current = c->Current->next;
+		c->current = c->current->next;
 		i++;
-	} while (c->Current != c->Head);
+	} while (c->current != c->head);
 }
 
-bool Compare(Node* p1, Node* p2)
+bool compare(Node* p1, Node* p2)
 {
-	return countLetters(*p1->plnt) < countLetters(*p2->plnt);
+	return countLetters(*p1->plant) < countLetters(*p2->plant);
 }
-void Sort(Container& c)
+
+void sort(Container& c)
 {
-	Node* curr1 = c.Head;
-	Node* curr2 = c.Head;
+	Node* current1 = c.head;
+	Node* current2 = c.head;
 	do {
-		curr2 = curr1->next;
-		while (curr2 != c.Head) {
-			if (Compare(curr1, curr2))
+		current2 = current1->next;
+		while (current2 != c.head) {
+			if (compare(current1, current2))
 			{
-				swap(curr1->plnt, curr2->plnt);
+				swap(current1->plant, current2->plant);
 			}
-			curr2 = curr2->next;
+			current2 = current2->next;
 		}
-		curr1 = curr1->next;
-	} while (curr1 != c.Head);
+		current1 = current1->next;
+	} while (current1 != c.head);
 }
 
 bool fileCheck(ifstream& ifst, ofstream& ofst)
 {
 	bool result = true;
-	string digits = "0123456789";
+	string DIGITS = "0123456789";
 	char tmp[100];
 	string tmps;
-
 
 	if (!ifst.is_open())
 	{
@@ -165,8 +169,8 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 		exit(1);
 	}
 	int cnt = 1;
-	//type check
-	while (!ifst.eof())
+	
+	while (!ifst.eof())//type check
 	{
 		ifst.getline(tmp, 100, '\n');
 		tmps = (tmp);
@@ -178,7 +182,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 		}
 		for (int i = 0; i < tmps.length(); i++)
 		{
-			if (!(digits.find(tmps[i]) < digits.length()))
+			if (!(DIGITS.find(tmps[i]) < DIGITS.length()))
 			{
 				cout << cnt << " Error: Type definition contains incorrect characters.\n";
 				result = false;
@@ -192,9 +196,8 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			result = false;
 			exit(1);
 		}
-		//
-		//name
-		ifst.getline(tmp, 100, '\n');
+
+		ifst.getline(tmp, 100, '\n'); //name
 		tmps = (tmp);
 		if (tmps == "")
 		{
@@ -202,14 +205,12 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			result = false;
 			exit(1);
 		}
-		//
-		//for different types
-		switch (type)
+		
+		switch (type)//for different types
 		{
 		case 1:
 		{
-			//tree - age
-			ifst.getline(tmp, 100, '\n');
+			ifst.getline(tmp, 100, '\n');//tree - age
 			tmps = (tmp);
 			if (tmps == "")
 			{
@@ -219,7 +220,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			}
 			for (int i = 0; i < tmps.length(); i++)
 			{
-				if (!(digits.find(tmps[i]) < digits.length()))
+				if (!(DIGITS.find(tmps[i]) < DIGITS.length()))
 				{
 					cout << cnt << " Error: The tree's age contains incorrect characters.\n";
 					result = false;
@@ -237,8 +238,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 		}
 		case 2:
 		{
-			//bush - blossom
-			ifst.getline(tmp, 100, '\n');
+			ifst.getline(tmp, 100, '\n');//bush - blossom
 			tmps = (tmp);
 			if (tmps == "")
 			{
@@ -248,7 +248,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			}
 			for (int i = 0; i < tmps.length(); i++)
 			{
-				if (!(digits.find(tmps[i]) < digits.length()))
+				if (!(DIGITS.find(tmps[i]) < DIGITS.length()))
 				{
 					cout << cnt << " Error: The flowering month contains incorrect characters.\n";
 					result = false;
@@ -266,8 +266,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 		}
 		case 3:
 		{
-			// flower - type
-			ifst.getline(tmp, 100, '\n');
+			ifst.getline(tmp, 100, '\n'); // flower - type
 			tmps = (tmp);
 			if (tmps == "")
 			{
@@ -277,7 +276,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			}
 			for (int i = 0; i < tmps.length(); i++)
 			{
-				if (!(digits.find(tmps[i]) < digits.length()))
+				if (!(DIGITS.find(tmps[i]) < DIGITS.length()))
 				{
 					cout << cnt << " Error: The flower's type contains incorrect characters.\n";
 					result = false;
@@ -294,9 +293,8 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			break;
 		}
 		}
-		//
-		//origin
-		ifst.getline(tmp, 100, '\n');
+		
+		ifst.getline(tmp, 100, '\n'); //origin
 		tmps = (tmp);
 		if (tmps == "")
 		{
@@ -306,7 +304,7 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 		}
 		for (int i = 0; i < tmps.length(); i++)
 		{
-			if (!(digits.find(tmps[i]) < digits.length()))
+			if (!(DIGITS.find(tmps[i]) < DIGITS.length()))
 			{
 				cout << cnt << " Error: The origin contains incorrect characters.\n";
 				result = false;
@@ -320,7 +318,6 @@ bool fileCheck(ifstream& ifst, ofstream& ofst)
 			result = false;
 			exit(1);
 		}
-		//
 		cnt++;
 	}
 }
