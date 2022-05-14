@@ -1,4 +1,5 @@
 #include "Container.h"
+#include <string>
 using namespace std;
 
 void Clear(Container* c) {
@@ -143,4 +144,183 @@ void Sort(Container& c)
 		}
 		curr1 = curr1->next;
 	} while (curr1 != c.Head);
+}
+
+bool fileCheck(ifstream& ifst, ofstream& ofst)
+{
+	bool result = true;
+	string digits = "0123456789";
+	char tmp[100];
+	string tmps;
+
+
+	if (!ifst.is_open())
+	{
+		cout << "Input file was not found.";
+		exit(1);
+	}
+	if (!ofst.is_open())
+	{
+		cout << "Output file was not found.";
+		exit(1);
+	}
+	int cnt = 1;
+	//type check
+	while (!ifst.eof())
+	{
+		ifst.getline(tmp, 100, '\n');
+		tmps = (tmp);
+		if (tmps == "")
+		{
+			cout << cnt << " Error: Type is a blank string.\n";
+			result = false;
+			exit(1);
+		}
+		for (int i = 0; i < tmps.length(); i++)
+		{
+			if (!(digits.find(tmps[i]) < digits.length()))
+			{
+				cout << cnt << " Error: Type definition contains incorrect characters.\n";
+				result = false;
+				exit(1);
+			}
+		}
+		int type = std::stoi(tmps);
+		if (type <= 0 || type > 3)
+		{
+			cout << cnt << " Error: Type is out of range.\n";
+			result = false;
+			exit(1);
+		}
+		//
+		//name
+		ifst.getline(tmp, 100, '\n');
+		tmps = (tmp);
+		if (tmps == "")
+		{
+			cout << cnt << " Error: Name of the plant is a blank string.\n";
+			result = false;
+			exit(1);
+		}
+		//
+		//for different types
+		switch (type)
+		{
+		case 1:
+		{
+			//tree - age
+			ifst.getline(tmp, 100, '\n');
+			tmps = (tmp);
+			if (tmps == "")
+			{
+				cout << cnt << " Error: The tree's age is a blank string.\n";
+				result = false;
+				exit(1);
+			}
+			for (int i = 0; i < tmps.length(); i++)
+			{
+				if (!(digits.find(tmps[i]) < digits.length()))
+				{
+					cout << cnt << " Error: The tree's age contains incorrect characters.\n";
+					result = false;
+					exit(1);
+				}
+			}
+			int age = std::stoi(tmps);
+			if (age <= 0)
+			{
+				cout << cnt << " Error: The tree's age is out of range.\n";
+				result = false;
+				exit(1);
+			}
+			break;
+		}
+		case 2:
+		{
+			//bush - blossom
+			ifst.getline(tmp, 100, '\n');
+			tmps = (tmp);
+			if (tmps == "")
+			{
+				cout << cnt << " Error: The flowering month is a blank string.\n";
+				result = false;
+				exit(1);
+			}
+			for (int i = 0; i < tmps.length(); i++)
+			{
+				if (!(digits.find(tmps[i]) < digits.length()))
+				{
+					cout << cnt << " Error: The flowering month contains incorrect characters.\n";
+					result = false;
+					exit(1);
+				}
+			}
+			int type = std::stoi(tmps);
+			if (type <= 0 || type > 12)
+			{
+				cout << cnt << " Error: The flowering month is out of range.\n";
+				result = false;
+				exit(1);
+			}
+			break;
+		}
+		case 3:
+		{
+			// flower - type
+			ifst.getline(tmp, 100, '\n');
+			tmps = (tmp);
+			if (tmps == "")
+			{
+				cout << cnt << " Error: The flower's type is a blank string.\n";
+				result = false;
+				exit(1);
+			}
+			for (int i = 0; i < tmps.length(); i++)
+			{
+				if (!(digits.find(tmps[i]) < digits.length()))
+				{
+					cout << cnt << " Error: The flower's type contains incorrect characters.\n";
+					result = false;
+					exit(1);
+				}
+			}
+			int type = std::stoi(tmps);
+			if (type <= 0 || type > 3)
+			{
+				cout << cnt << " Error: The flower's type is out of range.\n";
+				result = false;
+				exit(1);
+			}
+			break;
+		}
+		}
+		//
+		//origin
+		ifst.getline(tmp, 100, '\n');
+		tmps = (tmp);
+		if (tmps == "")
+		{
+			cout << cnt << " Error: The origin is a blank string.\n";
+			result = false;
+			exit(1);
+		}
+		for (int i = 0; i < tmps.length(); i++)
+		{
+			if (!(digits.find(tmps[i]) < digits.length()))
+			{
+				cout << cnt << " Error: The origin contains incorrect characters.\n";
+				result = false;
+				exit(1);
+			}
+		}
+		int origin = std::stoi(tmps);
+		if (origin <= 0 || origin > 4)
+		{
+			cout << cnt << " Error: The origin is out of range.\n";
+			result = false;
+			exit(1);
+		}
+		//
+		cnt++;
+	}
 }

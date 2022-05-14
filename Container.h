@@ -23,3 +23,5 @@ bool Compare(Node* p1, Node* p2);
 void Sort(Container& c);
 void OutPlant(ofstream& ofst, Node* Container);
 void OutTrees(ofstream& ofst, Container* c);
+
+bool fileCheck(ifstream& ifst, ofstream& ofst);
